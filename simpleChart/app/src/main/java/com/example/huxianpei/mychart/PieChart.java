@@ -108,8 +108,8 @@ public class PieChart extends View {
         mPath = new Path();
 
         nf = NumberFormat.getInstance();//数据格式化
-        nf.setMaximumFractionDigits(0);//保留一位小数
-        nf.setMinimumFractionDigits(0);//保留一位小数
+        nf.setMaximumFractionDigits(0);
+        nf.setMinimumFractionDigits(0);
     }
 
     @Override
@@ -177,6 +177,9 @@ public class PieChart extends View {
             //绘制线和文本
             canvas.drawLine(pxs,pys,pxt,pyt,mLinePaint);
             float res = mDataList.get(i).getValue() / mTotalValue * 100;
+            if(res>0&&res<1){
+                res = 1;
+            }
             float v = startAngle % 360;
             if (startAngle % 360.0 >= 90.0 && startAngle % 360.0 <= 270.0) {
                 canvas.drawText(nf.format(res)+"%",pxt-mTextPaint.measureText(nf.format(res)+"%"),pyt,mTextPaint);

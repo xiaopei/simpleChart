@@ -22,13 +22,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        for(int i = 0;i<10;i++){
-            DataEntity entity = new DataEntity(chars[i]+"",i+1);
+        int size = (int)(Math.random()*5);
+        for(int i = 0;i<size;i++){
+            DataEntity entity = new DataEntity(chars[i]+"",(int)(Math.random()*100));
+            list.add(entity);
+        }
+
+        for(int i = 0;i<5;i++){
+            DataEntity entity = new DataEntity(chars[i]+"",1);
+            list.add(entity);
+        }
+        for(int i = 0;i<5 - size;i++){
+            DataEntity entity = new DataEntity(chars[i]+"",(int)(Math.random()*100));
             list.add(entity);
         }
         BarChart barChart = (BarChart) findViewById(R.id.bar_chart);
         barChart.setList(list);
-        PieChart pieChart = (PieChart) findViewById(R.id.pie_chart);
+        YHPieChart pieChart = (YHPieChart) findViewById(R.id.pie_chart);
         pieChart.setDataList(list);
     }
 }
